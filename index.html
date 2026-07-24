@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tanmay Kandi</title>
+<meta name="description" content="Data science projects on nutrition, sugar, and small-business operations.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FAF9F6;
+    --ink:#16130F;
+    --hairline:#CFCAC1;
+    --muted:#6E675E;
+    --accent:#9E2B37;
+    --max:44rem;
+  }
+
+  *{box-sizing:border-box;}
+
+  html{-webkit-text-size-adjust:100%;}
+
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Newsreader',Georgia,serif;
+    font-size:1.0625rem;
+    line-height:1.62;
+    padding:0 1.5rem;
+  }
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:4.5rem 0 5rem;
+  }
+
+  /* ---- label voice: the nutrition-panel utility type ---- */
+  .label{
+    font-family:'Archivo',system-ui,sans-serif;
+    font-weight:700;
+    font-size:.7rem;
+    letter-spacing:.13em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+
+  /* ---- masthead ---- */
+  h1{
+    font-family:'Archivo',system-ui,sans-serif;
+    font-weight:800;
+    font-size:clamp(2.6rem,9vw,4rem);
+    line-height:.94;
+    letter-spacing:-.022em;
+    text-transform:uppercase;
+    margin:0;
+  }
+
+  .tagline{
+    margin:.85rem 0 0;
+    font-size:1.15rem;
+    line-height:1.5;
+    max-width:32rem;
+  }
+
+  /* ---- rule hierarchy, borrowed from a nutrition panel ---- */
+  .rule-heavy{border:0;border-top:9px solid var(--ink);margin:1.5rem 0 0;}
+  .rule-mid{border:0;border-top:4px solid var(--ink);margin:0;}
+  .rule-hair{border:0;border-top:1px solid var(--hairline);margin:0;}
+
+  /* ---- the serving-size strip ---- */
+  .strip{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    gap:1rem;
+    padding:.6rem 0 .65rem;
+    flex-wrap:wrap;
+  }
+
+  /* ---- project rows ---- */
+  .project{
+    padding:1.75rem 0 1.6rem;
+  }
+
+  .project-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:1.5rem;
+  }
+
+  .project h2{
+    font-family:'Archivo',system-ui,sans-serif;
+    font-weight:700;
+    font-size:1.32rem;
+    line-height:1.2;
+    letter-spacing:-.012em;
+    margin:0;
+  }
+
+  .kind{
+    display:block;
+    margin-top:.4rem;
+  }
+
+  .stat{
+    font-family:'Archivo',system-ui,sans-serif;
+    text-align:right;
+    flex-shrink:0;
+    font-variant-numeric:tabular-nums;
+    line-height:1;
+  }
+  .stat b{
+    display:block;
+    font-weight:800;
+    font-size:1.7rem;
+    letter-spacing:-.02em;
+  }
+  .stat span{
+    display:block;
+    margin-top:.3rem;
+    font-weight:600;
+    font-size:.64rem;
+    letter-spacing:.13em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+
+  .project p{
+    margin:.95rem 0 0;
+    max-width:36rem;
+  }
+
+  /* ---- links ---- */
+  .links{
+    margin-top:1.05rem;
+    display:flex;
+    flex-wrap:wrap;
+    gap:1.5rem;
+  }
+
+  .links a{
+    font-family:'Archivo',system-ui,sans-serif;
+    font-weight:600;
+    font-size:.83rem;
+    letter-spacing:.01em;
+    color:var(--accent);
+    text-decoration:none;
+    border-bottom:1.5px solid transparent;
+    padding-bottom:1px;
+    transition:border-color .18s ease;
+  }
+  .links a:hover,
+  .links a:focus-visible{
+    border-bottom-color:var(--accent);
+  }
+
+  .links a::after{
+    content:" \2192";
+    display:inline-block;
+    transition:transform .18s ease;
+  }
+  .links a:hover::after{transform:translateX(2px);}
+
+  /* ---- footer ---- */
+  footer{
+    padding-top:1.4rem;
+    display:flex;
+    justify-content:space-between;
+    gap:1rem;
+    flex-wrap:wrap;
+    align-items:baseline;
+  }
+  footer a{
+    color:var(--ink);
+    text-decoration:none;
+    border-bottom:1px solid var(--hairline);
+    font-family:'Archivo',system-ui,sans-serif;
+    font-weight:500;
+    font-size:.9rem;
+  }
+  footer a:hover,footer a:focus-visible{border-bottom-color:var(--ink);}
+
+  .footnote{
+    font-size:.9rem;
+    color:var(--muted);
+    margin:1.6rem 0 0;
+    max-width:34rem;
+  }
+
+  /* ---- focus ---- */
+  a:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+    border-radius:1px;
+  }
+
+  /* ---- entrance ---- */
+  .reveal{
+    opacity:0;
+    transform:translateY(10px);
+    animation:rise .55s cubic-bezier(.2,.7,.3,1) forwards;
+  }
+  .reveal:nth-child(1){animation-delay:.02s;}
+  .d1{animation-delay:.10s;}
+  .d2{animation-delay:.17s;}
+  .d3{animation-delay:.24s;}
+  .d4{animation-delay:.31s;}
+  .d5{animation-delay:.38s;}
+
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (prefers-reduced-motion:reduce){
+    .reveal{animation:none;opacity:1;transform:none;}
+    *{transition:none !important;}
+  }
+
+  @media (max-width:34rem){
+    body{padding:0 1.15rem;}
+    .wrap{padding:3rem 0 3.5rem;}
+    .project-top{flex-direction:column;gap:.85rem;}
+    .stat{text-align:left;display:flex;align-items:baseline;gap:.5rem;}
+    .stat b{font-size:1.35rem;}
+    .stat span{margin-top:0;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="reveal">
+    <h1>Tanmay<br>Kandi</h1>
+    <p class="tagline">I build data tools that make food and small businesses easier to understand. Most of my work starts with a question about sugar.</p>
+  </header>
+
+  <hr class="rule-heavy reveal d1">
+  <div class="strip reveal d1">
+    <span class="label">3 projects</span>
+    <span class="label">Frisco, Texas</span>
+  </div>
+  <hr class="rule-mid reveal d1">
+
+  <!-- PROJECT 1 -->
+  <article class="project reveal d2">
+    <div class="project-top">
+      <div>
+        <h2>Cold Stone Nutrition Calculator</h2>
+        <span class="label kind">Web tool</span>
+      </div>
+      <div class="stat"><b>518</b><span>menu items</span></div>
+    </div>
+    <p>Ice cream shops let you build whatever you want, then tell you nothing about what is in it. This tool lets you build any Cold Stone creation and see its full nutrition as you go, then suggests lighter versions and shows exactly what each change saves. Built for a local franchise using the company's own published nutrition data.</p>
+    <div class="links">
+      <a href="https://cold-stone-nutrition-calculator.streamlit.app/">Open the tool</a>
+      <a href="https://github.com/TKK2009/cold-stone-nutrition-calculator">Code</a>
+    </div>
+  </article>
+
+  <hr class="rule-hair">
+
+  <!-- PROJECT 2 -->
+  <article class="project reveal d3">
+    <div class="project-top">
+      <div>
+        <h2>The Sugar Landscape</h2>
+        <span class="label kind">Analysis</span>
+      </div>
+      <div class="stat"><b>1,143</b><span>desserts</span></div>
+    </div>
+    <p>I collected the published nutrition data for five national dessert chains to find out what actually drives how much sugar someone eats. It turns out the chains are nearly identical once you account for portion size, and the size you order matters far more than where you order it. Two of the five chains do not publish added sugar at all.</p>
+    <div class="links">
+      <a href="https://github.com/TKK2009/sugar-landscape/blob/main/The_Sugar_Landscape.pdf">Read the report</a>
+      <a href="https://github.com/TKK2009/sugar-landscape">Data and code</a>
+    </div>
+  </article>
+
+  <hr class="rule-hair">
+
+  <!-- PROJECT 3 -->
+  <article class="project reveal d4">
+    <div class="project-top">
+      <div>
+        <h2>Smart Staffing Dashboard</h2>
+        <span class="label kind">Web tool</span>
+      </div>
+    </div>
+    <p>A scheduling tool for a local Cold Stone franchise that predicts how busy a given shift will be, so the store can staff to demand instead of guessing. My first end-to-end project, and the one that taught me most of what the others are built on.</p>
+    <div class="links">
+      <a href="https://cold-stone-carrollton.streamlit.app/">Open the tool</a>
+      <a href="https://github.com/TKK2009/cold-stone-smart-staffing">Code</a>
+    </div>
+  </article>
+
+  <hr class="rule-mid reveal d5">
+
+  <footer class="reveal d5">
+    <span class="label">More coming</span>
+    <span>
+      <a href="https://github.com/TKK2009">GitHub</a>
+    </span>
+  </footer>
+
+  <p class="footnote reveal d5">Every project here uses first-party published data. Nothing is estimated or filled in.</p>
+
+</div>
+</body>
+</html>
